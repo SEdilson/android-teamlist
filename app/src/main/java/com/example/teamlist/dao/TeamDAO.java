@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TeamDAO {
 
-    private final static List<Team> teams = new ArrayList<>();
+    private static List<Team> teams = new ArrayList<>();
     private static int contadorIds = 1;
 
     public void saveTeam(Team team) {
@@ -47,5 +47,4 @@ public class TeamDAO {
         }
         return null;
     }
-
 }

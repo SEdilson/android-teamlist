@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamlist.R;
 import com.example.teamlist.dao.TeamDAO;
 import com.example.teamlist.models.Team;
+import com.example.teamlist.utils.ImageUtil;
 
 import static com.example.teamlist.ui.activity.TeamKeys.TEAM_KEY;
 
-public class AddTeamActivity extends AppCompatActivity {
+public class DetailTeamActivity extends AppCompatActivity {
 
-    private static final String ADD_TEAM_TITLE_APPBAR = "Add Team";
     private static final String UPDATE_TEAM_TITLE_APPBAR = "Update Team";
     private EditText nameField;
     private EditText leagueField;
@@ -29,8 +30,8 @@ public class AddTeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_team);
-        setTitle(ADD_TEAM_TITLE_APPBAR);
+        setContentView(R.layout.activity_detail_team);
+        setTitle(UPDATE_TEAM_TITLE_APPBAR);
 
         initFields();
         retrieveTeam();
@@ -54,15 +55,11 @@ public class AddTeamActivity extends AppCompatActivity {
     private void retrieveTeam() {
         Intent teamData = getIntent();
         if(teamData.hasExtra(TEAM_KEY)) {
-            setTitle(UPDATE_TEAM_TITLE_APPBAR);
             team = (Team) teamData.getSerializableExtra(TEAM_KEY);
             nameField.setText(team.getName());
             leagueField.setText(team.getLeague());
             divisionField.setText(team.getDivision());
             numberOfTitlesField.setText(String.valueOf(team.getNumberOfTitles()));
-        } else {
-            setTitle(ADD_TEAM_TITLE_APPBAR);
-            team = new Team();
         }
     }
 
@@ -70,8 +67,6 @@ public class AddTeamActivity extends AppCompatActivity {
         fillTeam();
         if(team.hasValidId()) {
             dao.updateTeam(team);
-        } else {
-            dao.saveTeam(team);
         }
         finish();
     }
@@ -90,9 +85,9 @@ public class AddTeamActivity extends AppCompatActivity {
 
     @NonNull
     public void initFields() {
-        nameField = findViewById(R.id.activity_add_team_name);
-        leagueField = findViewById(R.id.activity_add_team_league);
-        divisionField = findViewById(R.id.activity_add_team_division);
-        numberOfTitlesField = findViewById(R.id.activity_add_team_number_of_titles);
+        nameField = findViewById(R.id.activity_detail_team_name);
+        leagueField = findViewById(R.id.activity_detail_team_league);
+        divisionField = findViewById(R.id.activity_detail_team_division);
+        numberOfTitlesField = findViewById(R.id.activity_detail_team_number_of_titles);
     }
 }

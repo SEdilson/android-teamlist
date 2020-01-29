@@ -2,29 +2,93 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/activity_team_list_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Dodgers" />
-
-    <TextView
-        android:id="@+id/activity_team_list_league"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/activity_item_team_cardview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@id/activity_team_list_name"
-        app:layout_constraintTop_toBottomOf="@+id/activity_team_list_name"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="National League" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/activity_item_team_image"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/arizona_diamondbacks_logo"/>
+
+            <TextView
+                android:id="@+id/activity_item_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp"
+                app:layout_constraintStart_toStartOf="@id/activity_item_team_image"
+                app:layout_constraintTop_toTopOf="@id/activity_item_team_image"
+                app:layout_constraintBottom_toBottomOf="@id/activity_item_team_image"
+                app:layout_constraintEnd_toEndOf="@id/activity_item_team_image"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:textColor="@android:color/white"
+                tools:text="Arizona DiamondBacks"
+                android:background="@android:drawable/screen_background_dark_transparent"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/activity_item_team_league"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:text="National League"
+                android:textSize="16sp"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toStartOf="@id/activity_item_team_image"
+                app:layout_constraintTop_toBottomOf="@id/activity_item_team_image"/>
+
+            <TextView
+                android:id="@+id/activity_item_team_division"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:text="West Division"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/activity_item_team_league"
+                app:layout_constraintTop_toBottomOf="@id/activity_item_team_league"/>
+
+            <TextView
+                android:id="@+id/activity_item_team_number_of_titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:text="1 title"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/activity_item_team_division"
+                app:layout_constraintTop_toBottomOf="@id/activity_item_team_division"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

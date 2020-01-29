@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         android:name=".TeamListApplication"
+        android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activity.AddTeamActivity"></activity>
+        <activity android:name=".ui.activity.DetailTeamActivity"></activity>
         <activity android:name=".ui.activity.TeamListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

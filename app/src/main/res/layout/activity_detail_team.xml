@@ -2,15 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/ConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        tools:background="@drawable/la_dodgers_logo">
 
         <EditText
-            android:id="@+id/activity_add_team_name"
+            android:id="@+id/activity_detail_team_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -19,45 +21,40 @@
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/activity_add_team_league"
+            android:id="@+id/activity_detail_team_league"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:hint="@string/league"
             android:importantForAutofill="no"
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_add_team_name" />
+            app:layout_constraintStart_toStartOf="@id/activity_detail_team_name"
+            app:layout_constraintTop_toBottomOf="@+id/activity_detail_team_name" />
 
         <EditText
-            android:id="@+id/activity_add_team_division"
+            android:id="@+id/activity_detail_team_division"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:hint="@string/division"
             android:importantForAutofill="no"
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_add_team_league" />
+            app:layout_constraintStart_toStartOf="@id/activity_detail_team_league"
+            app:layout_constraintTop_toBottomOf="@+id/activity_detail_team_league" />
 
         <EditText
-            android:id="@+id/activity_add_team_number_of_titles"
+            android:id="@+id/activity_detail_team_number_of_titles"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:hint="@string/number_of_titles"
             android:importantForAutofill="no"
             android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_add_team_division" />
+            app:layout_constraintStart_toStartOf="@id/activity_detail_team_division"
+            app:layout_constraintTop_toBottomOf="@+id/activity_detail_team_division" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

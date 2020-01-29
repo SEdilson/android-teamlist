@@ -17,12 +17,11 @@ public class TeamListView {
 
     private final Context context;
     private final TeamListAdapter adapter;
-    private final TeamDAO dao;
+    private final TeamDAO dao = new TeamDAO();
 
     public TeamListView(Context context) {
         this.context = context;
         adapter = new TeamListAdapter(this.context);
-        dao = new TeamDAO();
     }
 
     public void confirmRemove(@NonNull final MenuItem item) {

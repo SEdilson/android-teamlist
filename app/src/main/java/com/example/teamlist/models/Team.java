@@ -11,16 +11,14 @@ public class Team implements Serializable {
     private String league;
     private String division;
     private int numberOfTitles;
+    private String image;
 
-    public Team(String name, String league, String division, int numberOfTitles) {
+    public Team(String name, String league, String division, int numberOfTitles, String image) {
         this.name = name;
         this.league = league;
         this.division = division;
         this.numberOfTitles = numberOfTitles;
-    }
-
-    public Team() {
-
+        this.image = image;
     }
 
     public String getName() {
@@ -61,6 +59,10 @@ public class Team implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     @NonNull
