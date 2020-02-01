@@ -5,16 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teamlist.R;
-import com.example.teamlist.dao.TeamDAO;
 import com.example.teamlist.models.Team;
-import com.example.teamlist.utils.ImageUtil;
 
+import static com.example.teamlist.ui.activity.TeamKeys.POSITION_KEY;
+import static com.example.teamlist.ui.activity.TeamKeys.RESULT_CODE_UPDATE_TEAM;
 import static com.example.teamlist.ui.activity.TeamKeys.TEAM_KEY;
 
 public class DetailTeamActivity extends AppCompatActivity {
@@ -24,8 +23,8 @@ public class DetailTeamActivity extends AppCompatActivity {
     private EditText leagueField;
     private EditText divisionField;
     private EditText numberOfTitlesField;
-    TeamDAO dao = new TeamDAO();
     private Team team;
+    private int positionReceived;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class DetailTeamActivity extends AppCompatActivity {
         setTitle(UPDATE_TEAM_TITLE_APPBAR);
 
         initFields();
-        retrieveTeam();
+        bindTeamValues();
     }
 
     @Override
@@ -46,16 +45,21 @@ public class DetailTeamActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        if(itemId == R.id.activity_add_team_menu_save) {
+        if(itsItemMenuItem(itemId)) {
             endForm();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void retrieveTeam() {
+    private boolean itsItemMenuItem(int itemId) {
+        return itemId == R.id.activity_add_team_menu_save;
+    }
+
+    private void bindTeamValues() {
         Intent teamData = getIntent();
-        if(teamData.hasExtra(TEAM_KEY)) {
+        if(teamData.hasExtra(TEAM_KEY) && teamData.hasExtra(POSITION_KEY)) {
             team = (Team) teamData.getSerializableExtra(TEAM_KEY);
+            positionReceived = teamData.getIntExtra(POSITION_KEY, -1);
             nameField.setText(team.getName());
             leagueField.setText(team.getLeague());
             divisionField.setText(team.getDivision());
@@ -65,10 +69,15 @@ public class DetailTeamActivity extends AppCompatActivity {
 
     private void endForm() {
         fillTeam();
-        if(team.hasValidId()) {
-            dao.updateTeam(team);
-        }
+        resultUpdate();
         finish();
+    }
+
+    private void resultUpdate() {
+        Intent resultUpdate = new Intent();
+        resultUpdate.putExtra(TEAM_KEY, team);
+        resultUpdate.putExtra(POSITION_KEY, positionReceived);
+        setResult(RESULT_CODE_UPDATE_TEAM, resultUpdate);
     }
 
     private void fillTeam() {

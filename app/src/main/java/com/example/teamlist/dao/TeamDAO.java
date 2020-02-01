@@ -3,11 +3,13 @@ package com.example.teamlist.dao;
 import com.example.teamlist.models.Team;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class TeamDAO {
 
-    private static List<Team> teams = new ArrayList<>();
+    private static final List<Team> teams = new ArrayList<>();
     private static int contadorIds = 1;
 
     public void saveTeam(Team team) {
@@ -33,6 +35,10 @@ public class TeamDAO {
         if(teamReturned != null) {
             teams.remove(teamReturned);
         }
+    }
+
+    public void change(int position, Team team) {
+        teams.set(position, team);
     }
 
     public List<Team> allTeams() {
