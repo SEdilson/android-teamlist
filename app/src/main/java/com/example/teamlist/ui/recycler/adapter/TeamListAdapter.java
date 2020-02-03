@@ -26,7 +26,6 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
     List<Team> teams;
     private Context context;
     private OnItemClickListener onItemClickListener;
-    private OnLongClickListener onLongClickListener;
 
     public TeamListAdapter(Context context, List<Team> teams) {
         this.context = context;
@@ -57,17 +56,8 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
         notifyDataSetChanged();
     }
 
-    public void remove(Team team) {
-        teams.remove(team);
-        notifyDataSetChanged();
-    }
-
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
-    }
-
-    public void setOnLongClickListener(OnLongClickListener onLongClickListener) {
-        this.onLongClickListener = onLongClickListener;
     }
 
     public class TeamListViewHolder extends RecyclerView.ViewHolder {
@@ -92,13 +82,6 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
                     onItemClickListener.onItemClick(team, getAdapterPosition());
                 }
             });
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    onLongClickListener.onLongClick(team, getAdapterPosition());
-//                    return false;
-//                }
-//            });
         }
 
         public void bindFields(Team team) {

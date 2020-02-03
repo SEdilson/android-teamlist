@@ -36,38 +36,30 @@ public class TeamListActivity extends AppCompatActivity {
         configureTeamList();
     }
 
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        getMenuInflater().inflate(R.menu.activity_team_list_menu, menu);
-//    }
-
-//    @Override
-//    public boolean onContextItemSelected(@NonNull final MenuItem item) {
-//        int itemId = item.getItemId();
-//        if(itemId == R.id.activity_team_list_menu_remove) {
-//            adapter.setOnLongClickListener(new OnLongClickListener() {
-//                @Override
-//                public void onLongClick(Team team, int position) {
-//                    teamListView.confirmRemove(item);
-//                }
-//            });
-//        }
-//        return super.onContextItemSelected(item);
-//    }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(isRequestCode(requestCode) &&
-                isResultCode(resultCode)) {
-            Team retrievedTeam = (Team) data.getSerializableExtra(TEAM_KEY);
-            int positionReturned = data.getIntExtra(POSITION_KEY, INVALID_POSITION);
-            dao.change(positionReturned, retrievedTeam);
-            adapter.change(positionReturned, retrievedTeam);
+        if(itsResultDetailTeam(requestCode, data)) {
+            if(isResultCode(resultCode)) {
+                Team retrievedTeam = (Team) data.getSerializableExtra(TEAM_KEY);
+                int positionReturned = data.getIntExtra(POSITION_KEY, INVALID_POSITION);
+                changeTeam(retrievedTeam, positionReturned);
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void changeTeam(Team team, int position) {
+        dao.change(position, team);
+        adapter.change(position, team);
+    }
+
+    private boolean itsResultDetailTeam(int requestCode, @Nullable Intent data) {
+        return isRequestCode(requestCode) && hasTeamKey(data);
+    }
+
+    private boolean hasTeamKey(@Nullable Intent data) {
+        return data != null && data.hasExtra(TEAM_KEY);
     }
 
     private boolean isResultCode(int resultCode) {
@@ -80,11 +72,10 @@ public class TeamListActivity extends AppCompatActivity {
 
     private void configureTeamList() {
         RecyclerView teams_recyclerview = findViewById(R.id.teams_recyclerview);
-        configureAdapter(teams, teams_recyclerview);
+        configureAdapter(teams_recyclerview);
     }
 
-    public void configureAdapter(List<Team> teams, RecyclerView teams_recyclerview) {
-        adapter = new TeamListAdapter(this, teams);
+    public void configureAdapter(RecyclerView teams_recyclerview) {
         teams_recyclerview.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -98,6 +89,6 @@ public class TeamListActivity extends AppCompatActivity {
         Intent initFormDataTeam = new Intent(TeamListActivity.this, DetailTeamActivity.class);
         initFormDataTeam.putExtra(TEAM_KEY, team);
         initFormDataTeam.putExtra(POSITION_KEY, position);
-        startActivityForResult(initFormDataTeam, 1);
+        startActivityForResult(initFormDataTeam, REQUEST_CODE_UPDATE_TEAM);
     }
 }
