@@ -1,5 +1,6 @@
 package com.example.teamlist.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,9 +16,9 @@ import com.example.teamlist.ui.recycler.adapter.listener.OnItemClickListener;
 
 import java.util.List;
 
+import static com.example.teamlist.ui.activity.TeamKeys.INVALID_POSITION;
 import static com.example.teamlist.ui.activity.TeamKeys.POSITION_KEY;
 import static com.example.teamlist.ui.activity.TeamKeys.REQUEST_CODE_UPDATE_TEAM;
-import static com.example.teamlist.ui.activity.TeamKeys.RESULT_CODE_UPDATE_TEAM;
 import static com.example.teamlist.ui.activity.TeamKeys.TEAM_KEY;
 
 public class TeamListActivity extends AppCompatActivity {
@@ -58,16 +59,23 @@ public class TeamListActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == REQUEST_CODE_UPDATE_TEAM &&
-                resultCode == RESULT_CODE_UPDATE_TEAM &&
-                data.hasExtra(POSITION_KEY)) {
+        if(isRequestCode(requestCode) &&
+                isResultCode(resultCode)) {
             Team retrievedTeam = (Team) data.getSerializableExtra(TEAM_KEY);
-            int positionReturned = data.getIntExtra(POSITION_KEY, -1);
+            int positionReturned = data.getIntExtra(POSITION_KEY, INVALID_POSITION);
             dao.change(positionReturned, retrievedTeam);
             adapter.change(positionReturned, retrievedTeam);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private boolean isResultCode(int resultCode) {
+        return resultCode == Activity.RESULT_OK;
+    }
+
+    private boolean isRequestCode(int requestCode) {
+        return requestCode == REQUEST_CODE_UPDATE_TEAM;
     }
 
     private void configureTeamList() {

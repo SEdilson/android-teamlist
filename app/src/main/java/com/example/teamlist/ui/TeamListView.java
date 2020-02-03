@@ -24,24 +24,24 @@
 //        adapter = new TeamListAdapter(this.context, dao.allTeams());
 //    }
 //
-////    public void confirmRemove(@NonNull final MenuItem item) {
-////        new AlertDialog
-////                .Builder(context)
-////                .setTitle("Removing Team")
-////                .setMessage("Are you sure that you wanna remove this team?")
-////                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-////                    @Override
-////                    public void onClick(DialogInterface dialog, int which) {
-////                        RecyclerView.Adapter menuInfo =
-////                                (RecyclerView.Adapter) item.getMenuInfo();
-////////                        Team teamRetrieved = adapter.onBindViewHolder(menuInfo, menuInfo.);
-//////                        removeTeam(teamRetrieved);
-////                        configureConfirmationDialog();
-////                    }
-////                })
-////                .setNegativeButton("No", null)
-////                .show();
-////    }
+//public void confirmRemove(@NonNull final MenuItem item) {
+//        new AlertDialog
+//                .Builder(context)
+//                .setTitle("Removing Team")
+//                .setMessage("Are you sure that you wanna remove this team?")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        RecyclerView.Adapter menuInfo =
+//                                (RecyclerView.Adapter) item.getMenuInfo();
+//                        Team teamRetrieved = adapter.onCreateViewHolder(menuInfo.)
+//                        removeTeam(teamRetrieved);
+//                        configureConfirmationDialog();
+//                    }
+//                })
+//                .setNegativeButton("No", null)
+//                .show();
+//    }
 //
 //    private void configureConfirmationDialog() {
 //        new AlertDialog

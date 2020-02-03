@@ -1,5 +1,6 @@
 package com.example.teamlist.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,13 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamlist.R;
 import com.example.teamlist.models.Team;
 
+import static com.example.teamlist.ui.activity.TeamKeys.INVALID_POSITION;
 import static com.example.teamlist.ui.activity.TeamKeys.POSITION_KEY;
-import static com.example.teamlist.ui.activity.TeamKeys.RESULT_CODE_UPDATE_TEAM;
 import static com.example.teamlist.ui.activity.TeamKeys.TEAM_KEY;
 
 public class DetailTeamActivity extends AppCompatActivity {
 
-    private static final String UPDATE_TEAM_TITLE_APPBAR = "Update Team";
     private EditText nameField;
     private EditText leagueField;
     private EditText divisionField;
@@ -30,7 +30,6 @@ public class DetailTeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_team);
-        setTitle(UPDATE_TEAM_TITLE_APPBAR);
 
         initFields();
         bindTeamValues();
@@ -57,9 +56,10 @@ public class DetailTeamActivity extends AppCompatActivity {
 
     private void bindTeamValues() {
         Intent teamData = getIntent();
-        if(teamData.hasExtra(TEAM_KEY) && teamData.hasExtra(POSITION_KEY)) {
+        if(teamData.hasExtra(TEAM_KEY)) {
             team = (Team) teamData.getSerializableExtra(TEAM_KEY);
-            positionReceived = teamData.getIntExtra(POSITION_KEY, -1);
+            setTitle(team.getName());
+            positionReceived = teamData.getIntExtra(POSITION_KEY, INVALID_POSITION);
             nameField.setText(team.getName());
             leagueField.setText(team.getLeague());
             divisionField.setText(team.getDivision());
@@ -77,7 +77,7 @@ public class DetailTeamActivity extends AppCompatActivity {
         Intent resultUpdate = new Intent();
         resultUpdate.putExtra(TEAM_KEY, team);
         resultUpdate.putExtra(POSITION_KEY, positionReceived);
-        setResult(RESULT_CODE_UPDATE_TEAM, resultUpdate);
+        setResult(Activity.RESULT_OK, resultUpdate);
     }
 
     private void fillTeam() {
