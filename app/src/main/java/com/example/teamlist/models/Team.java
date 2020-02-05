@@ -1,24 +1,34 @@
 package com.example.teamlist.models;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity
 public class Team implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
     private int id = 0;
     private String name;
     private String league;
     private String division;
     private int numberOfTitles;
-    private String image;
+    private int image;
 
-    public Team(String name, String league, String division, int numberOfTitles, String image) {
+    @Ignore
+    public Team(String name, String league, String division, int numberOfTitles, int image) {
         this.name = name;
         this.league = league;
         this.division = division;
         this.numberOfTitles = numberOfTitles;
         this.image = image;
+    }
+
+    public Team() {
+
     }
 
     public String getName() {
@@ -61,17 +71,17 @@ public class Team implements Serializable {
         this.id = id;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     @NonNull
     @Override
     public String toString() {
         return name;
-    }
-
-    public boolean hasValidId() {
-        return id > 0;
     }
 }

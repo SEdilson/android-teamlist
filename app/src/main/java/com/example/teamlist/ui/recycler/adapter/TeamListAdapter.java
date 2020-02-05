@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.teamlist.R;
 import com.example.teamlist.models.Team;
 import com.example.teamlist.ui.recycler.adapter.listener.OnItemClickListener;
-import com.example.teamlist.ui.recycler.adapter.listener.OnLongClickListener;
 import com.example.teamlist.utils.ImageUtil;
+import com.example.teamlist.utils.TitlesUtil;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamListViewHolder> {
 
-    List<Team> teams;
+    private List<Team> teams;
     private Context context;
     private OnItemClickListener onItemClickListener;
 
@@ -95,7 +95,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
             name.setText(team.getName());
             league.setText(team.getLeague());
             division.setText(team.getDivision());
-            numberOfTitles.setText(String.valueOf(team.getNumberOfTitles()));
+            numberOfTitles.setText(TitlesUtil.formatTitles(team.getNumberOfTitles()));
         }
 
         private Drawable configureTeamImage(Team team) {
