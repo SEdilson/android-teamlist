@@ -27,6 +27,8 @@ import static com.example.teamlist.ui.activity.TeamKeys.POSITION_KEY;
 import static com.example.teamlist.ui.activity.TeamKeys.REQUEST_CODE_UPDATE_TEAM;
 import static com.example.teamlist.ui.activity.TeamKeys.TEAM_KEY;
 
+//TODO: Figure out a way to stop the replication of data
+
 public class TeamListActivity extends AppCompatActivity {
 
     private static final String TEAM_LIST_TITLE_APPBAR = "Team List";
