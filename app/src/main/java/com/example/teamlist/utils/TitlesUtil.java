@@ -8,6 +8,9 @@ public class TitlesUtil {
     public static String formatTitles(int numberOfTitles) {
         if(numberOfTitles > 1) {
             return numberOfTitles + TITLES_PLURAL;
-        } return numberOfTitles + TITLES_SINGULAR;
+        } else if(numberOfTitles == 0) {
+            return "No" + TITLES_PLURAL;
+        }
+        return numberOfTitles + TITLES_SINGULAR;
     }
 }

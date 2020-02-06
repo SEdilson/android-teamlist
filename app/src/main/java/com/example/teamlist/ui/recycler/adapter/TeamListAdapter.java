@@ -1,7 +1,6 @@
 package com.example.teamlist.ui.recycler.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamlist.R;
+import com.example.teamlist.database.dao.RoomTeamDAO;
 import com.example.teamlist.models.Team;
 import com.example.teamlist.ui.recycler.adapter.listener.OnItemClickListener;
-import com.example.teamlist.utils.ImageUtil;
 import com.example.teamlist.utils.TitlesUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.example.teamlist.TeamsInfo.AMERICAN_LEAGUE;
+import static com.example.teamlist.TeamsInfo.CENTRAL_DIVISION;
+import static com.example.teamlist.TeamsInfo.EAST_DIVISION;
+import static com.example.teamlist.TeamsInfo.NATIONAL_LEAGUE;
+import static com.example.teamlist.TeamsInfo.WEST_DIVISION;
 
 // TODO Implement long click to delete a item
 
@@ -26,6 +32,7 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
     private List<Team> teams;
     private Context context;
     private OnItemClickListener onItemClickListener;
+    private RoomTeamDAO dao;
 
     public TeamListAdapter(Context context, List<Team> teams) {
         this.context = context;
@@ -90,16 +97,11 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
         }
 
         private void insertDataOnFields(Team team) {
-            Drawable drawableImageTeam = configureTeamImage(team);
-            image.setImageDrawable(drawableImageTeam);
+            Picasso.with(context).load(team.getImage()).into(image);
             name.setText(team.getName());
             league.setText(team.getLeague());
             division.setText(team.getDivision());
             numberOfTitles.setText(TitlesUtil.formatTitles(team.getNumberOfTitles()));
-        }
-
-        private Drawable configureTeamImage(Team team) {
-            return ImageUtil.returnDrawable(context, team.getImage());
         }
     }
 }
