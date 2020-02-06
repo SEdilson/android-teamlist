@@ -19,12 +19,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.teamlist.TeamsInfo.AMERICAN_LEAGUE;
-import static com.example.teamlist.TeamsInfo.CENTRAL_DIVISION;
-import static com.example.teamlist.TeamsInfo.EAST_DIVISION;
-import static com.example.teamlist.TeamsInfo.NATIONAL_LEAGUE;
-import static com.example.teamlist.TeamsInfo.WEST_DIVISION;
-
 // TODO Implement long click to delete a item
 
 public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamListViewHolder> {
@@ -32,7 +26,6 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
     private List<Team> teams;
     private Context context;
     private OnItemClickListener onItemClickListener;
-    private RoomTeamDAO dao;
 
     public TeamListAdapter(Context context, List<Team> teams) {
         this.context = context;
