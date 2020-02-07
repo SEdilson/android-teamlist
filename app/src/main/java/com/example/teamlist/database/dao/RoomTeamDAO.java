@@ -1,7 +1,6 @@
 package com.example.teamlist.database.dao;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,9 +17,6 @@ public interface RoomTeamDAO {
 
     @Query("SELECT * FROM team")
     List<Team> allTeams();
-
-    @Delete
-    void remove(Team team);
 
     @Update
     void change(Team team);

@@ -21,7 +21,6 @@ public abstract class TeamListDatabase extends RoomDatabase {
     public static TeamListDatabase getInstance(Context context) {
         return Room
                 .databaseBuilder(context, TeamListDatabase.class, TEAM_LIST_DB)
-                .allowMainThreadQueries()
                 .addMigrations(MIGRATIONS)
                 .build();
     }

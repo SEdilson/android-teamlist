@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamlist.R;
-import com.example.teamlist.database.dao.RoomTeamDAO;
 import com.example.teamlist.models.Team;
 import com.example.teamlist.ui.recycler.adapter.listener.OnItemClickListener;
 import com.example.teamlist.utils.TitlesUtil;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // TODO Implement long click to delete a item
@@ -28,8 +28,8 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamLi
     private OnItemClickListener onItemClickListener;
 
     public TeamListAdapter(Context context, List<Team> teams) {
-        this.context = context;
         this.teams = teams;
+        this.context = context;
     }
 
     @NonNull

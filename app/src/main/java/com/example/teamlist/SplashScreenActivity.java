@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void initSplashActivity() {
-        Intent intent = new Intent(SplashScreenActivity.this, TeamListActivity.class);
+        Intent intent = new Intent(this, TeamListActivity.class);
         startActivity(intent);
         finish();
     }
